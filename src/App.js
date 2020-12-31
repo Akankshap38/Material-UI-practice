@@ -8,6 +8,15 @@ export default function App() {
       <Button variant="contained" color="primary" size="medium" fullWidth>
         Click me
       </Button>
+
+      <Button
+        style={{ marginTop: "10px" }}
+        variant="outlined"
+        color="secondary"
+        size="medium"
+      >
+        Click me
+      </Button>
     </div>
   );
 }
