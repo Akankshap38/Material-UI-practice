@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -9,10 +9,14 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: "10px"
   },
   menuButton: {
     marginRight: theme.spacing(2)
+  },
+  typographyStyle: {
+    flex: 1
   }
 }));
 
@@ -25,17 +29,14 @@ export default function AppNavBar() {
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit">
-            Akanksha Pardeshi
-          </Typography>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
+          <Typography
+            className={classes.typographyStyle}
+            variant="h6"
             color="inherit"
           >
-            <AccountCircleIcon />
-          </IconButton>
+            Akanksha Pardeshi
+          </Typography>
+          <AccountCircleIcon />
         </Toolbar>
       </AppBar>
     </div>

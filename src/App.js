@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
-import AppNavBar from "./Components/AppNavBar";
+import CenteredGrid from "./Components/CenteredGrid";
 
 export default function App() {
-  return <AppNavBar />;
+  return <CenteredGrid />;
 }
