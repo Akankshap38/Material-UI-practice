@@ -40,9 +40,8 @@ const useStyles = makeStyles({
   }
 });
 
-function CoffeeCard() {
+function CoffeeCard(props) {
   const classes = useStyles();
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -56,12 +55,12 @@ function CoffeeCard() {
             <ShareIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.data.title}
+        subheader={props.data.price}
       />
       <CardMedia
         className={classes.media}
-        image="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+        image={props.data.imageUrl}
         title="Paella dish"
       />
       <CardContent>
