@@ -1,7 +1,5 @@
 import React from "react";
 
-import CenteredGrid from "./Components/CenteredGrid";
-
 export default function App() {
-  return <CenteredGrid />;
+  return <h1>Hello World</h1>;
 }
