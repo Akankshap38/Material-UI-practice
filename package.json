@@ -1,7 +1,7 @@
 {
-  "name": "getting-started-with-material-ui",
+  "name": "hp-wiki",
   "version": "1.0.0",
-  "description": "",
+  "description": "This App gives details of characters in HP universe.",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
