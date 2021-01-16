@@ -1,63 +1,103 @@
-import React, { useState, useEffect } from "react";
-import {
-  Paper,
-  Button,
-  Grid,
-  Typography,
-  Switch,
-  FormGroup,
-  FormControlLabel
-} from "@material-ui/core";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import InputBase from "@material-ui/core/InputBase";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
 
-export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const handleChange = (event) => {
-    setDarkMode(darkMode ? false : true);
-  };
-
-  useEffect(() => {
-    console.log(darkMode);
-  }, [darkMode]);
-  const theme = createMuiTheme({
-    palette: {
-      type: darkMode ? "dark" : "light"
-    },
-    typography: {
-      h1: {
-        fontSize: "3em"
-      }
+const useStyles = makeStyles((theme) => ({
+  grow: {
+    flexGrow: 1
+  },
+  appBar: {
+    backgroundColor: "#583d72"
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    fontFamily: "Potta One",
+    fontStyle: "cursive",
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block"
     }
-  });
-
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: "#583d72",
+    "&:hover": {
+      backgroundColor: "#a685e2"
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto"
+    }
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inputRoot: {
+    color: "inherit"
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch"
+    }
+  }
+}));
+export default function App() {
+  const classes = useStyles();
   return (
-    <ThemeProvider theme={theme}>
-      <Paper style={{ height: "100vh" }}>
-        <Grid container direction="column">
-          <Typography variant="h1">This is my App!</Typography>
-          <Button variant="contained" color="primary">
-            This is a button
-          </Button>
-          <Button variant="contained" color="secondary">
-            This is another button
-          </Button>
-        </Grid>
-
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={darkMode}
-                onChange={handleChange}
-                name="darkModeToggle"
-                color="primary"
-              />
-            }
-            label="Switch to Dark Mode"
-          />
-        </FormGroup>
-      </Paper>
-    </ThemeProvider>
+    <div className={classes.grow}>
+      <AppBar position="static" className={classes.appBar}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography className={classes.title} variant="h6" noWrap>
+            HP Wiki <FlashOnIcon style={{ color: "#fecd1a" }} />
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </div>
+          <div className={classes.grow} />
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
