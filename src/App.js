@@ -8,6 +8,10 @@ import InputBase from "@material-ui/core/InputBase";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
+import { Route, Switch } from "react-router-dom";
+
+import HPdex from "./Components/characters";
+import CharacterDex from "./Components/characterDetails";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -98,6 +102,14 @@ export default function App() {
           <div className={classes.grow} />
         </Toolbar>
       </AppBar>
+      <Switch>
+        <Route exact path="/" render={(props) => <HPdex {...props} />} />
+        <Route
+          exact
+          path="/:charID"
+          render={(props) => <CharacterDex title="hello" {...props} />}
+        />
+      </Switch>
     </div>
   );
 }
