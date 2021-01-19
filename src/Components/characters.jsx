@@ -10,6 +10,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import CharCard from "./CharCard";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -70,15 +71,12 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "20px",
     paddingLeft: "50px",
     paddingRight: "50px"
-  }
+  },
+  cardStyle: {}
 }));
 
 function getCharCard(cardDetails) {
-  return (
-    <Grid item xs={4}>
-      {cardDetails.name}
-    </Grid>
-  );
+  return <CharCard />;
 }
 export default function HPdex() {
   const classes = useStyles();
@@ -141,7 +139,7 @@ export default function HPdex() {
       <Grid container spacing={2} className={classes.charContainer}>
         {charData.map((element, index) => {
           return (
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               {getCharCard(element)}
             </Grid>
           );
