@@ -10,7 +10,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import CharCard from "./CharCard";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import Avatar from "@material-ui/core/Avatar";
+import { red } from "@material-ui/core/colors";
+import Card from "@material-ui/core/Card";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -72,13 +76,26 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "50px",
     paddingRight: "50px"
   },
-  cardStyle: {}
+  cardRoot: {
+    maxWidth: 345
+  },
+  media: {
+    height: 0,
+    paddingTop: "100%"
+  },
+  avatar: {
+    backgroundColor: red[500]
+  }
 }));
 
-function getCharCard(cardDetails) {
-  return <CharCard />;
+function getInitials(name) {
+  const nameArray = name.split(" ");
+  return nameArray[0].charAt(0).concat(nameArray[1].charAt(0));
 }
-export default function HPdex() {
+
+export default function HPdex(props) {
+  console.log(props);
+  const { history } = props;
   const classes = useStyles();
   const [charData, setCharData] = useState([]);
   useEffect(() => {
@@ -95,7 +112,7 @@ export default function HPdex() {
               ? element.dataOfBirth
               : "Not known",
           aliveState: element.alive ? element.alive : "Not known",
-          spirit: element.image,
+          sprit: element.image,
           patronus: element.species === "human" ? element.patronus : "NA",
           species: element.species,
           ancestry: element.ancestry
@@ -140,7 +157,24 @@ export default function HPdex() {
         {charData.map((element, index) => {
           return (
             <Grid item xs={12} sm={6} md={4}>
-              {getCharCard(element)}
+              <Card
+                className={classes.cardRoot}
+                onClick={() => history.push(`/${index}`)}
+              >
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="name" className={classes.avatar}>
+                      {getInitials(element.name)}
+                    </Avatar>
+                  }
+                  title={element.name}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={element.sprit}
+                  title={element.name}
+                />
+              </Card>
             </Grid>
           );
         })}
