@@ -93,6 +93,10 @@ function getInitials(name) {
   return nameArray[0].charAt(0).concat(nameArray[1].charAt(0));
 }
 
+function getRouteName(name) {
+  const nameArray = name.split(" ");
+  return nameArray[0].toLowerCase().concat("+", nameArray[1].toLowerCase());
+}
 export default function HPdex(props) {
   console.log(props);
   const { history } = props;
@@ -159,7 +163,7 @@ export default function HPdex(props) {
             <Grid item xs={12} sm={6} md={4}>
               <Card
                 className={classes.cardRoot}
-                onClick={() => history.push(`/${index}`)}
+                onClick={() => history.push(getRouteName(element.name))}
               >
                 <CardHeader
                   avatar={
@@ -182,3 +186,5 @@ export default function HPdex(props) {
     </div>
   );
 }
+
+export { getRouteName };
