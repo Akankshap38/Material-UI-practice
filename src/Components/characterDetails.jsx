@@ -81,10 +81,9 @@ export default function CharacterDex(props) {
       </Grid>
       <Grid
         item
-        justify="center"
         xs={12}
-        sm={6}
-        style={{ paddingTop: "30px", paddingLeft: "40px" }}
+        sm={5}
+        style={{ paddingTop: "30px", paddingLeft: "10%" }}
       >
         <Avatar
           alt={charProps.name}
@@ -97,9 +96,10 @@ export default function CharacterDex(props) {
         item
         direction="column"
         alignItems="center"
+        justify="flex-start"
         spacing={2}
         xs={12}
-        sm={6}
+        sm={7}
       >
         <Grid item container>
           <Grid item xs={6}>
