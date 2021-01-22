@@ -1,8 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getRouteName } from "./characters";
+import { Grid, Avatar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  large: {
+    width: theme.spacing(25),
+    height: theme.spacing(35)
+  },
+  emoji: {
+    width: theme.spacing(10),
+    height: theme.spacing(10)
+  },
+  attributeStyle: {
+    fontFamily: "Pacifico",
+    fontStyle: "cursive",
+    fontSize: "30px",
+    align: "center",
+    color: "#ffdf91"
+  }
+}));
 
 export default function CharacterDex(props) {
+  const classes = useStyles();
   const [charProps, setCharProps] = useState({});
   const charID = props.match.params.charID;
   useEffect(() => {
@@ -35,5 +56,102 @@ export default function CharacterDex(props) {
         } //for loop closing
       }); //then closing
   }, []);
-  return <h2>You see details of character with ID {charID}</h2>;
+  // console.log(charProps);
+
+  // to print:
+  // name, house, dob, alive Status, images, patronus, species, ancestory
+  return (
+    <Grid
+      container
+      spacing={1}
+      justify="center"
+      className={classes.attributeStyle}
+    >
+      <Grid item xs={12} align="center">
+        <h3
+          style={{
+            fontFamily: "Kaushan Script",
+            fontStyle: "cursive",
+            fontSize: "50px",
+            color: "#eff7e1"
+          }}
+        >
+          {charProps.name}
+        </h3>
+      </Grid>
+      <Grid
+        item
+        justify="center"
+        xs={12}
+        sm={6}
+        style={{ paddingTop: "30px", paddingLeft: "40px" }}
+      >
+        <Avatar
+          alt={charProps.name}
+          src={charProps.sprit}
+          className={classes.large}
+        />
+      </Grid>
+
+      <Grid
+        item
+        direction="column"
+        alignItems="center"
+        spacing={2}
+        xs={12}
+        sm={6}
+      >
+        <Grid item container>
+          <Grid item xs={6}>
+            <p>House </p>
+          </Grid>
+          <Grid item>
+            <p>{charProps.house}</p>
+          </Grid>
+        </Grid>
+        <Grid item container>
+          <Grid item xs={6}>
+            <p>Date of Birth</p>
+          </Grid>
+          <Grid item>
+            <p>{charProps.dob ? charProps.dob : charProps.yob}</p>
+          </Grid>
+        </Grid>
+        <Grid item container>
+          <Grid item xs={6}>
+            <p>Patronous</p>
+          </Grid>
+          <Grid item>
+            <p>{charProps.patronus ? charProps.patronus : "Not known"}</p>
+          </Grid>
+        </Grid>
+        <Grid item container>
+          <Grid item xs={6}>
+            <p>Ancestory</p>
+          </Grid>
+          <Grid item>
+            <p>{charProps.ancestry ? charProps.ancestry : "Not known"}</p>
+          </Grid>
+        </Grid>
+        <Grid item container alignItems="center">
+          <Grid item xs={6}>
+            <p>Alive Status</p>
+          </Grid>
+          <Grid item>
+            <p style={{ fontSize: "22px" }}>
+              {charProps.aliveState === true ? (
+                <span role="img" aria-label="sheep" className={classes.emoji}>
+                  🙂 Alive
+                </span>
+              ) : (
+                <span role="img" aria-label="sheep" className={classes.emoji}>
+                  ⚰️ Dead
+                </span>
+              )}
+            </p>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 }

@@ -115,7 +115,7 @@ export default function HPdex(props) {
             element.dataOfBirth || element.dataOfBirth !== ""
               ? element.dataOfBirth
               : "Not known",
-          aliveState: element.alive ? element.alive : "Not known",
+          aliveState: element.alive,
           sprit: element.image,
           patronus: element.species === "human" ? element.patronus : "NA",
           species: element.species,
