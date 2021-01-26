@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { Router } from "react-router-dom";
-import { createBrowserHistory } from "history";
-
-const history = createBrowserHistory();
-
+import { BrowserRouter as Router } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <Router history={history}>
+    <Router>
+      <CssBaseline />
       <App />
     </Router>
   </React.StrictMode>,
